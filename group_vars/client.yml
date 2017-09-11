@@ -1,0 +1,1 @@
+server_urls: "{{ groups['server'] | each_hostvars(hostvars) | keep_attribute('url') }}"

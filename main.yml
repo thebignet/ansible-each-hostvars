@@ -1,0 +1,18 @@
+---
+- name: Get information from another group
+  hosts: client
+  remote_user: root
+
+  tasks:
+  - name: each_hostvars
+    debug:
+      msg: "{{ groups['server'] | each_hostvars(hostvars) }}"
+
+  - name: each_format
+    debug:
+      msg: "{{ groups['server'] | each_hostvars(hostvars) | each_format('http://{id}.server.com:{port}/') }}"
+
+  - name: jinja
+    debug:
+      msg: "{{ server_urls }}"
+
